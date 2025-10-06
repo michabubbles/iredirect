@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting... ⏳</title>
+
+    <!-- Open Graph meta tags for social sharing -->
+    <meta property="og:title" content="Dont miss out ⏳💚" />
+    <meta property="og:description" content="Lets play 💚😊" />
+    <meta property="og:image" content="https://bey.co/wp-content/uploads/Sylva2view.png" />
+    <meta property="og:url" content="https://bey.co/sylva" />
+
+    <script>
+        (function () {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            var str = navigator.userAgent;
+            var instagram = str.indexOf("Instagram") !== -1;
+            var facebook = str.indexOf("FB") !== -1;
+            var isAndroid = /android/i.test(userAgent);
+            var isIOS = /iPad|iPhone|iPod/.test(userAgent);
+
+            var path = window.location.pathname; // Extract path from URL
+            var cleanUrl = "https://bey.co/sylva" + path; // Construct new URL
+
+            if (instagram || facebook) {
+                if (isAndroid) {
+                    var intentUrl = "intent://" + cleanUrl.replace(/^https?:\/\//, '') +
+                        "#Intent;scheme=https;package=com.android.chrome;end;";
+                    window.location.href = intentUrl;
+                    document.write('<meta http-equiv="refresh" content="0; url=' + intentUrl + '">');
+                } else if (isIOS) {
+                    window.location.href = 'x-safari-' + cleanUrl;
+                }
+            } else {
+                // Normal redirection for non-Instagram users
+                window.location.href = cleanUrl;
+            }
+        })();
+    </script>
+</head>
+<body>
+    <p>If you are not redirected, <a id="redirectLink" href="#">click here</a>.</p>
+    <script>document.getElementById("redirectLink").href = "https://bey.co/sylva" + window.location.pathname;</script>
+</body>
+</html>
